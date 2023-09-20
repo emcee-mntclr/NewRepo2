@@ -1,0 +1,36 @@
+﻿@model Instructor
+<h2e>Update</h2e>
+
+
+<form method="post" asp-action="updateinstructor" asp-controller="Instructor" class='p-2 row gx-3 gy-2 align-items-center'>
+    <div class="form-group">
+        <label asp-for="ID">Instructor ID</label>
+        <input class="form-control" asp-for="ID" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName">Enter Firstname</label>
+        <input class="form-control" asp-for="FirstName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">Enter LastName</label>
+        <input class="form-control" asp-for="LastName" />
+    </div>
+    <div class="form-group">
+        <label class="input-group-text" asp-for="isTenured">Instructor Tenured</label>
+        <input class="form-check-input" asp-for="isTenured">
+
+    </div>
+    <div class="form-group">
+        <label class="input-group-text" asp-for="Rank">Instructor Rank</label>
+        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Rank))" asp-for="Rank">
+        </select>
+
+    </div>
+    <div class=" form-group">
+        <label asp-for="HiringDate">Date Enrolled</label>
+        <input asp-for="HiringDate" class="form-control" />
+    </div>
+    <button type="button" onclick="history.back()" class="btn btn-secondary p-20">Cancel</button>
+    <button type="submit" class="btn btn-primary p-20">Submit</button>
+
+</form>

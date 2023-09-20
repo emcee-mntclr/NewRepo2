@@ -45,5 +45,32 @@ namespace WebApplication69.Controllers
             InstructorList.Add(instructor);
             return View("Index");
         }
+        public IActionResult updateinstructor(int id)
+        {
+
+            Instructor? instructor = InstructorList.FirstOrDefault(t => t.ID == id);
+
+            if (instructor != null)
+            {
+                return View(instructor);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult updateinstructor(Instructor updateinstructor)
+        {
+            Instructor? instructor = InstructorList.FirstOrDefault(t => t.ID == updateinstructor.ID);
+
+            if (instructor != null)
+            {
+                instructor.FirstName = updateinstructor.FirstName;
+                instructor.LastName = updateinstructor.LastName;
+
+            };
+
+            return View("Index", InstructorList);
+        }
+
     }
 }
+

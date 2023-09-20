@@ -44,10 +44,39 @@ namespace WebApplication69.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddStudent(Student newStudent)
+        public IActionResult AddStudent(Student newstudent)
         {
-            StudentList.Add(newStudent);
-            return View("Index");
+
+            StudentList.Add(newstudent);
+            return View("Index", StudentList);
         }
+        public IActionResult updatestudent(int id)
+        {
+
+            Student? student = StudentList.FirstOrDefault(t => t.id == id);
+
+            if (student != null)
+            {
+                return View(student);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult updatestudent(Student updatestudent)
+        {
+            Student? student = StudentList.FirstOrDefault(t => t.id == updatestudent.id);
+
+            if (student != null)
+            {
+                student.Fname = updatestudent.Fname;
+                student.Lname = updatestudent.Lname;
+                student.email = updatestudent.email;
+                student.course = updatestudent.course;
+            };
+
+            return View("Index", StudentList);
+        }
+
     }
 }
+

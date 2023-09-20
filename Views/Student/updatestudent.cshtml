@@ -1,0 +1,39 @@
+﻿@model Student;
+
+
+
+<h2>Update Student</h2>
+
+
+<form method="post" asp-action="updatestudent" asp-controller="Student" class='p-2 row gx-3 gy-2 align-items-center'>
+    <div class="form-group">
+        <label asp-for="id">Student ID</label>
+        <input class="form-control" asp-for="id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Fname">Enter StudentName</label>
+        <input class="form-control" asp-for="Fname" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Lname">Enter StudentName</label>
+        <input class="form-control" asp-for="Lname" />
+    </div>
+    <div class="form-group">
+        <label asp-for="email">Enter Email</label>
+        <input class="form-control" asp-for="email" />
+    </div>
+    <div class="form-group">
+
+        <label class="input-group-text" asp-for="course">Enter Course</label>
+        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="course">
+            
+        </select>
+
+    </div>
+    <div class=" form-group">
+        <label asp-for="dateenrolled">Date Enrolled</label>
+        <input asp-for="dateenrolled" class="form-control" />
+    </div>
+    <button type="button" onclick="history.back()" class="btn btn-secondary p-20">Cancel</button>
+    <button type="submit" class="btn btn-primary p-20">Update</button>
+    </form>

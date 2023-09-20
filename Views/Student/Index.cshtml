@@ -5,7 +5,7 @@
 
 <table class="table table-dark">
     <tr>
-        <th colspan="8">Student</th>
+        <th colspan="7">Student</th>
     </tr>
     <tr>
         <td>ID</td>
@@ -18,16 +18,19 @@
 
 
     </tr>
-    @foreach (var student in Model)
+    @foreach (var Student in Model)
     {
         <tr>
-            <td>@student.id</td>
-            <td>@student.Fname</td>
-            <td>@student.Lname</td>
-            <td>@student.course</td>
-            <td>@student.email </td>
-            <td>@student.dateenrolled</td>
-            <td><a asp-action="ShowDetails" asp-route-id="@student.id">Show Details</a></td>
+            <td>@Student.id</td>
+            <td>@Student.Fname</td>
+            <td>@Student.Lname</td>
+            <td>@Student.course</td>
+            <td>@Student.email </td>
+            <td>@Student.dateenrolled</td>
+            <td>
+                <a asp-action="ShowDetails" asp-route-id="@Student.id">Show Details</a>
+                <a asp-action="updatestudent" asp-route-id="@Student.id" class="btn btn-primary">Update</a>
+             </td>
 
         </tr>
     }
