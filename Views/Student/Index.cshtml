@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Student>;
 <div>Student List</div>
+<input class="btn btn-primary" type="button" value="Add Student"
+       onclick="@("window.location.href='" + @Url.Action("AddStudent", "Student") + "'");" />
+
 <table class="table table-dark">
     <tr>
         <th colspan="8">Student</th>

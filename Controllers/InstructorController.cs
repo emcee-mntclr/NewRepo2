@@ -33,5 +33,17 @@ namespace WebApplication69.Controllers
             return NotFound();
            
         }
+        [HttpGet]
+        public IActionResult AddIns()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult AddIns(Instructor instructor)
+        {
+            InstructorList.Add(instructor);
+            return View("Index");
+        }
     }
 }
