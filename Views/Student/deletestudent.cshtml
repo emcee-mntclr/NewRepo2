@@ -1,0 +1,38 @@
+﻿@model Student;
+
+
+
+<h2>Sure ka na ba?? Dedelete ko na to</h2>
+
+
+<form method="post" asp-action="Delete" asp-controller="Student" class='p-2 row gx-3 gy-2 align-items-center'>
+    <div class="form-group">
+        <label asp-for="id">Student ID</label>
+        <input class="form-control" asp-for="id" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Fname">Enter StudentName</label>
+        <input class="form-control" asp-for="Fname" readonly/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Lname">Enter StudentName</label>
+        <input class="form-control" asp-for="Lname" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="email">Enter Email</label>
+        <input class="form-control" asp-for="email" readonly />
+    </div>
+    <div class="form-group">
+
+        <label class="input-group-text" asp-for="course">Enter Course</label>
+        <select class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="course" readonly >
+        </select>
+
+    </div>
+    <div class=" form-group">
+        <label asp-for="dateenrolled">Date Enrolled</label>
+        <input asp-for="dateenrolled" class="form-control" readonly />
+    </div>
+    <button type="button" onclick="history.back()" class="btn btn-secondary p-20">Cancel</button>
+    <button type="submit" class="btn btn-primary p-20">Delete</button>
+</form>

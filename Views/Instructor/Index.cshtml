@@ -35,8 +35,9 @@
             }
         </td>
             <td><a asp-action="ShowDetail" asp-route-id="@instructor.ID">Show Details</a>
-            
+
                 <a asp-action="updateinstructor" asp-route-id="@instructor.ID" class="btn btn-primary">Update</a>
+                <a asp-action="deleteinstructor" asp-route-id="@instructor.ID" class="btn btn-danger">Delete</a>
             </td>
         </tr>
     }

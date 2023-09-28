@@ -19,7 +19,7 @@
 
     </tr>
     @foreach (var Student in Model)
-    {
+    {   
         <tr>
             <td>@Student.id</td>
             <td>@Student.Fname</td>
@@ -30,6 +30,7 @@
             <td>
                 <a asp-action="ShowDetails" asp-route-id="@Student.id">Show Details</a>
                 <a asp-action="updatestudent" asp-route-id="@Student.id" class="btn btn-primary">Update</a>
+                <a asp-action="deletestudent" asp-route-id="@Student.id" class="btn btn-danger">Delete</a>
              </td>
 
         </tr>

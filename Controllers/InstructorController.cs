@@ -1,33 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication69.Models;
+using WebApplication69.Services;
 
 namespace WebApplication69.Controllers
 {
     public class InstructorController : Controller
     {
-        List<Instructor> InstructorList = new List<Instructor>
+        private readonly IFakeData _dummyData;
+        public InstructorController(IFakeData dummyData)
         {
-            new Instructor()
-            {
-                FirstName = "Ronina", LastName = "Tayuan", Rank = Rank.AssistantProfessor, HiringDate = DateTime.Now, isTenured = true, ID = 1
-            },
-            new Instructor()
-            {
-                 FirstName = "Gabriel", LastName = "Montano", Rank = Rank.Instructor, HiringDate = DateTime.Now, isTenured= true, ID = 2
-            },
-            new Instructor()
-            {
-                 FirstName = "Jerralyn", LastName = "Padua", Rank = Rank.AssociateProfessor,    HiringDate = DateTime.Now, isTenured = false , ID = 3    
-            }
-        };
+            _dummyData = dummyData;
+        }
 
         public IActionResult Index()
         {
-            return View(InstructorList);
+            return View(_dummyData.InstructorList);
         }
         public IActionResult ShowDetail(int id)
         {
-            Instructor? instructor = InstructorList.FirstOrDefault(x => x.ID == id);
+            Instructor? instructor = _dummyData.InstructorList.FirstOrDefault(x => x.ID == id);
             if (instructor != null)
                 return View(instructor);
             return NotFound();
@@ -42,13 +33,13 @@ namespace WebApplication69.Controllers
         [HttpPost]
         public IActionResult AddIns(Instructor instructor)
         {
-            InstructorList.Add(instructor);
+            _dummyData.InstructorList.Add(instructor);
             return View("Index");
         }
         public IActionResult updateinstructor(int id)
         {
 
-            Instructor? instructor = InstructorList.FirstOrDefault(t => t.ID == id);
+            Instructor? instructor = _dummyData.InstructorList.FirstOrDefault(t => t.ID == id);
 
             if (instructor != null)
             {
@@ -59,7 +50,7 @@ namespace WebApplication69.Controllers
         [HttpPost]
         public IActionResult updateinstructor(Instructor updateinstructor)
         {
-            Instructor? instructor = InstructorList.FirstOrDefault(t => t.ID == updateinstructor.ID);
+            Instructor? instructor = _dummyData.InstructorList.FirstOrDefault(t => t.ID == updateinstructor.ID);
 
             if (instructor != null)
             {
@@ -68,9 +59,30 @@ namespace WebApplication69.Controllers
 
             };
 
-            return View("Index", InstructorList);
+            return RedirectToAction("Index");
         }
+        public IActionResult deleteinstructor(int id)
+        {
 
+            Instructor? instructor = _dummyData.InstructorList.FirstOrDefault(t => t.ID == id);
+
+            if (instructor != null)
+            {
+                return View(instructor);
+            }
+            return NotFound();
+
+        }
+        [HttpPost]
+        public IActionResult Delete(Instructor newInstructor)
+        {
+            Instructor? instructor = _dummyData.InstructorList.FirstOrDefault(st => st.ID == newInstructor.ID);
+            if (instructor != null)
+                _dummyData.InstructorList.Remove(instructor);
+             return RedirectToAction("Index");
+        }
     }
 }
+
+    
 
